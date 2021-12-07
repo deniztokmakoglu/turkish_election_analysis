@@ -1,0 +1,329 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx,psfrag,epsf}
+\usepackage{enumerate}
+\usepackage{natbib}
+\usepackage{float}
+\usepackage{booktabs,dcolumn}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{lscape}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+\newcolumntype{d}{D{.}{.}{2.5}}           % alignment on decimal marker
+\newcommand\mc[1]{\multicolumn{1}{c}{#1}}
+\usepackage{url} % not crucial - just used below for the URL 
+
+%\pdfminorversion=4
+% NOTE: To produce blinded version, replace "0" with "1" below.
+\newcommand{\blind}{0}
+
+% DON'T change margins - should be 1 inch all around.
+\addtolength{\oddsidemargin}{-1in}%
+\addtolength{\evensidemargin}{-1in}%
+\addtolength{\textwidth}{1in}%
+\addtolength{\textheight}{1.3in}%
+\addtolength{\topmargin}{-.8in}%
+
+
+\begin{document}
+
+%\bibliographystyle{natbib}
+
+\def\spacingset#1{\renewcommand{\baselinestretch}%
+{#1}\small\normalsize} \spacingset{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\if0\blind
+{
+  \title{\bf Turkish Elections and Catastrophic Events}
+    {
+}
+
+  \maketitle
+} \fi
+
+\if1\blind
+{
+  \bigskip
+  \bigskip
+  \bigskip
+  \begin{center}
+    {\LARGE\bf Title}
+\end{center}
+  \medskip
+} \fi
+
+\spacingset{1.45} % DON'T change the spacing!
+\section{Introduction}
+\label{sec:intro}
+
+A year ago, Turkey celebrated it's first century of being a democracy and only in 2 years, celebrations for being a republic is on the line. Yet, the country, which resides possibly one of the lesser stable regions in the world; suffered a lot during this period, while trying to establish their democratic traditions. Having survived 3 coups,  
+
+
+
+The stages for our analysis are as follows. 
+First, we identify that there are more cases closed at the end of the month, which can be considered as an expeditious decision. (See \ref{fig:figure1} and \ref{fig:figure2} in appendix), in any given month, for any court type and case type. Then we show, that cases closed at the end of the month are more likely to be appealed than cases closed at any other period. (See \ref{fig:figure3} in appendix) Subsequently, we examine the performance of firms with different party roles (Respondent and Plaintiff) that are involved with a case in our data using several performance indicators such as firm profit, firm current assets and number of employees in a 6 year time window, 3 years before the closure of the case and 3 years after the closure of the case.  
+
+We are hoping to stress the importance of a judicial systems on well being and growth of the county by drawing parallels with the judicial structures and firm performance that derive growth. This paper will be the first to evaluate the adverse effects on performance of firms involved in a lawsuit by the quality of the judicial decision. The quality of the decision is, in theory, highly affected by the deadlines set by the government.
+
+\section{Literature Review}
+
+Previous research also show the impact of deadline quotas on judge behavior. de Figueiredo et al. evaluates the effects of a requirement of federal district court judges to publicly release their backlog on their behaviour. They report that such a quota incentives judges to close considerably more cases right before the deadline week\href{ref:ref1}{(de Figueiredo et al., 2017)}. Similar deadline effects are also present in different fields. (Lewis & Bajari, 2014), (Asch, 1990), (Oyer, 1998), (Frakes & Wasserman, 2016) and (Liebman & Mahoney, 2017) discuss the "bunching" of work completion right before the deadline in construction, military recruitment, sales, patent examination and end of the year spending by government agencies respectively. Cohen et.al investigates deadlines medical drug approval deadlines. Echoed in our research's outline, they first reveal that there is a global surge in drug approvals right before the approval deadlines. Consequently, they argue that these swift decisions are associated with more adverse effects such as death, hospitalization etc. (Cohen et al., 2019). Carpenter and Grimmer discuss the downside of government imposed decision making deadlines and derive a model that demonstrates the increase error rate in decision making.(Daniel & Grimmer., 2009). While our research is comparable with de Figueiredo et al. in terms of how deadline quotas effect judge behaviour on case closure and Cohen et al. in the matter of decision outcomes on the utility of individuals and firms, this will be the first paper to study the adverse effects of quotas on both the quality of the decision made by the judge as well as on the financial outcomes and performance of firms involved in a lawsuit.
+\newpage
+\section{Analytic Design}
+\label{sec:meth}
+
+We have obtained case-level micro data from the ICMS on 4.1 million unique court 
+cases between the years 2010 and 2016. The data contains records of all cases that were opened in 2010 for Municipal, Commercial, County and Supreme courts and is much more comprehensive after 2013.  For each case the establishment date, the date when procedures began, resolve and close dates, case type, decision type, party roles and if the case was appealed after and value of claim in the case is reported. 
+
+1 million of these cases are matched with ORBIS data, which stores firm level information, using unique a firm ID, allowing us to access firm performance indicators.
+
+Thus far, we show that if a respondent firm is associated with an expeditious decision, then it is also expected to be associated with a worse performance in more tangible indicators such as profit and current assets in the following years of the case closure. (See \ref{fig:figure6} in appendix). 
+
+To show the adverse effects in firm performance, we take the following steps.
+
+First of all, using difference in difference estimation, we show that a pre case closure trend for these variables also to be present for Respondents(See \ref{fig:figure4} and \ref{fig:figure5} in appendix). In order to be able to neutralize pre trend effects, we use two approaches. 
+
+The first approach adopts Time Aggregation to Difference in Difference Estimation to ignore the time series information.(Bertrand et al., 2003) Using the aggregation method, we create two new variables, "average pre treatment effect" and "average post treatment affect" for firm i as follows: 
+
+$$ Performance(Post - Pre)Treatment_i = mean(Performance_{it}) - mean(Performance_{it})$$
+
+where the binary variable $treatment$ reflects the case closure. 
+
+\ref{fig:figure6}(see Appendix) shows that for respondents, an average firm performs worse, in terms of profit, in the long term if it has a case that is closed at the end of the month. 
+
+The second approach follows Pre Event Trends in the Panel Event Study Design by Freyaldenhoven, Hansen and Shapiro. We locate three time varying instrumental variables, case closure year, case closure month and case closure month day, $\eta_{it}$ that are related with the treatment variable $z_{it}$ and outcome variable $y_{1jt}$ and run the following two stage linear regression.
+
+$$\hat{y_{ijt}} = \hat{\beta_{1j}}*z_{it} + \hat{\beta_{1j}}*\eta_{it} + \epsilon_{it} $$
+$$\hat{x_{ijt}} = \hat{\delta_{1j}}*\eta_{it} + \hat{u_{it}} $$
+for firm i, firm role j (respondent and plaintiff) and time t. 
+
+In \ref{fig:figure7}(see Appendix), we plot the coefficients of the resulting regression. For respondent firms, given with similar pre trends, firms with cases closed at the end of the month perform worse than firms with cases closed at the beginning of the month for more tangible assets. 
+
+Finally, we run the difference in difference regression 
+
+$$ log(performance_i + 1) = \hat{\beta_1} * treatment_{it} * end_{it} + \hat{\beta_2}*treatment_{it} + \hat{\beta_2} * end_{it} + X_i + \lambda $$ 
+
+where the binary variable $treatment$ reflects the case closure, $X$ is a vector of court, party roles and category type fixed effects and $\lambda$ is time fixed effects.
+
+In Tables 1 and 2 (see Appendix), we show that in the long run firms with cases closed at the end of the month perform 37\% worse in terms of profit than cases closed in the beginning of the month. The trend is consistent with different combinations of fixed effects. 
+
+\section{Work Program}
+Daniel Li Chen (Senior Economist, DIME) is the Lead Principal Investigator (PI). Manuel Ramos-Maqueda (Analyst, DIME) is a Principal Investigator in this project. Deniz Tokmakoglu (Research Asistant, DIME) is the research assistant in this project. 
+
+In the following steps of the analysis, we are planning to continue 
+
+We are planning to conclude our analysis in $xx$ months. Results of the study will be disseminated widely through seminars and peer reviewed publications.
+
+\section{Appendix}
+\label{sec:verify}
+
+\subsection{Figure 1 Cases closed by the days of the month}
+\begin{figure}[H]
+\label{fig:figure1}
+    \centering
+    \includegraphics[width=8cm]{case_closure_total.jpg}
+    \caption{Cases closed by the days of the month}
+\end{figure}
+
+\subsection{Figure 2 Percentage of Cases Closed at the End of the Month By Region}
+\begin{figure}[H]
+  \label{fig:figure2}
+    \centering
+    \includegraphics[width=8cm]{map_1.jpg}
+    \caption{Percentage of Cases Closed at the End of the Month By Region}
+\end{figure}
+\subsection{Figure 3 Percentage of Appeals by Cases Closed at the End of the Month}
+\begin{figure}[H]   
+  \label{fig:figure3}
+    \centering
+    \includegraphics[width=10cm]{Percent_appealed.jpg}
+    \caption{There is a discontinuity around the end of the month which signifies that 
+    cases closed at the end of the month had more appeals.}
+\end{figure}
+\subsection{Figure 4 Pre Treatment Effect for Respondent Firms}
+\begin{figure}[H]
+  \label{fig:figure4}
+    \centering
+    \includegraphics[width=8cm]{pre_treatment_respondents.jpg}
+    \caption{Pre Treatment Effect for Respondent Firms}
+\end{figure}
+\subsection{Figure 5 Pre - Pre Treatment Effect for Respondent Firms}
+\begin{figure}[H]
+  \label{fig:figure5}
+    \centering
+    \includegraphics[width=8cm]{pre_pre_respondent.jpg}
+    \caption{Pre - Pre Treatment Effect for Respondent Firms}
+\end{figure}
+\subsection{Figure 6 Post - Pre Treatment Effect for Respondent Firms}
+\begin{figure}[H]
+  \label{fig:figure6}
+    \centering
+    \includegraphics[width=8cm]{plot_respondents_post_pre_profit.jpg}
+    \caption{Post - Pre Treatment Effect for Respondent Firms}
+\end{figure}
+\subsection{Figure 7 Two Stage Linear Regression Coefficients for Respondent Firms}
+\begin{figure}[H]
+  \label{fig:figure7}
+    \centering
+    \includegraphics[width=8cm]{respondents_2sls.jpg}
+    \caption{Two Stage Linear Regression Coefficients for Respondent Firms}
+\end{figure}
+
+\newpage
+
+\begin{landscape}
+
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{fig:table1} 
+\tiny 
+\begin{tabular}{@{\extracolsep{2pt}}lccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{5}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-6} 
+\\[-1.8ex] & \multicolumn{5}{c}{log(profit + 1)} \\ 
+ & OLS & Court Type Fixed & Category Type Fixed & Party Roles Fixed & Court and Category Types Fixed \\ 
+\\[-1.8ex] & (1) & (2) & (3) & (4) & (5)\\ 
+\hline \\[-1.8ex] 
+ After Case Closure & 0.491$^{***}$ & 0.361$^{***}$ & 0.399$^{***}$ & 0.384$^{***}$ & 0.397$^{***}$ \\ 
+  & (0.005) & (0.016) & (0.017) & (0.016) & (0.016) \\ 
+  Closed at the end of the Month (Days 20, 31) & 0.208$^{***}$ &  &  &  &  \\ 
+  & (0.004) &  &  &  &  \\ 
+  After Case Closure for cases closed at the end of the month & $-$0.374$^{***}$ & $-$0.368$^{***}$ & $-$0.396$^{***}$ & $-$0.370$^{***}$ & $-$0.395$^{***}$ \\ 
+  & (0.006) & (0.022) & (0.022) & (0.021) & (0.022) \\ 
+ \hline \\[-1.8ex] 
+Observations & 287,505 & 287,505 & 264,417 & 287,505 & 264,417 \\ 
+R$^{2}$ & 0.941 & 0.178 & 0.213 & 0.212 & 0.230 \\ 
+Adjusted R$^{2}$ & 0.939 & 0.178 & 0.213 & 0.212 & 0.229 \\ 
+Residual Std. Error & 0.795 (df = 275632) & 2.907 (df = 287465) & 2.849 (df = 264307) & 2.846 (df = 287440) & 2.819 (df = 264305) \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{5}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+  \caption{} 
+  \label{fig:table2} 
+\tiny 
+\begin{tabular}{@{\extracolsep{2pt}}lccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{3}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-4} 
+\\[-1.8ex] & \multicolumn{3}{c}{log(profit + 1)} \\ 
+ & Category Types and Party Roles Fixed & Court Type and Party Roles Fixed & All Fixed \\ 
+\\[-1.8ex] & (1) & (2) & (3)\\ 
+\hline \\[-1.8ex] 
+ After Case Closure & 0.397$^{***}$ & 0.377$^{***}$ & 0.403$^{***}$ \\ 
+  & (0.016) & (0.016) & (0.016) \\ 
+  Closed at the end of the Month (Days 20, 31) &  &  &  \\ 
+  &  &  &  \\ 
+  After Case Closure for cases closed at the end of the month & $-$0.392$^{***}$ & $-$0.368$^{***}$ & $-$0.397$^{***}$ \\ 
+  & (0.022) & (0.021) & (0.021) \\ 
+ \hline \\[-1.8ex] 
+Observations & 264,417 & 287,505 & 264,417 \\ 
+R$^{2}$ & 0.237 & 0.240 & 0.274 \\ 
+Adjusted R$^{2}$ & 0.237 & 0.240 & 0.274 \\ 
+Residual Std. Error & 2.805 (df = 264352) & 2.795 (df = 287436) & 2.736 (df = 264278) \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{3}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table} 
+
+
+
+\end{landscape}
+
+\begin{tabular}{lll}
+\toprule
+type & stat & val\\
+\midrule
+ & Coef & -111569.399\\
+
+ & SE & 26938.086\\
+
+ & t-stat & -4.142\\
+
+\multirow{-4}{*}{\raggedright\arraybackslash Local-Linear} & CI & (-164367.077,-58771.721)\\
+\cmidrule{1-3}
+ & Coef & -102031.996\\
+
+ & SE & 36941.283\\
+
+ & t-stat & -2.762\\
+
+\multirow{-4}{*}{\raggedright\arraybackslash Robust} & CI & (-174435.581,-29628.412)\\
+\cmidrule{1-3}
+ & Bandwidth & (14,13)\\
+
+ & Nobs & (14,13)\\
+
+\multirow{-3}{*}{\raggedright\arraybackslash --} & Polynomial Order & 3\\
+\bottomrule
+\end{tabular}
+
+\section{References}
+
+\begin{referece}
+\label{ref:ref1}
+de Figueiredo, M., Lahav, A. D., & Siegelman, P. (2017). Do Judges Respond to Incentives? 
+The Effects of the Six Month List. SSRN Electronic Journal, 1–74 
+\end{referece}
+
+\begin{referece}
+Cohen, L., Gurun, U., & Li, D. (2019). Internal Deadlines, Drug Approvals, and Safety Problems. SSRN Electronic Journal, 1–19. https://doi.org/10.2139/ssrn.3427338
+\end{referece}
+
+\begin{referece}
+Freyaldenhoven, Simon, Christian Hansen, and Jesse M. Shapiro. 2019. "Pre-event Trends in the Panel Event-Study Design." American Economic Review, 109 (9): 3307-38.
+\end{referece}
+
+\begin{referece}
+Bertrand, M., Duflo, E., &amp; Mullainathan, S. (2002). How much should we trust differences-in-differences estimates? doi:10.3386/w8841
+\end{referece}
+
+\begin{referece}
+McCrary, J. (2007). Manipulation of the running variable in the regression discontinuity design: A density test. doi:10.3386/t0334
+\end{referece}
+
+\begin{referece}
+Carpenter, Daniel, and Justin Grimmer. 2009. “The Downside of Deadlines.” Robert
+Wood Johnson Scholars in Health Policy Working Paper, 35.
+\end{referece}
+
+\begin{referece}
+Cohen, L., Gurun, U., & Li, D. (2019). Internal Deadlines, Drug Approvals, and Safety Problems. SSRN Electronic Journal, 1–19. https://doi.org/10.2139/ssrn.3427338
+\end{referece}
+
+\begin{referece}
+Gregory Lewis and Patrick Bajari, Moral Hazard, Incentive Contracts, and Risk: Evidence from Procurement ,81 REV. ECON. STUD. 1201, 1202 (2014)
+\end{referece}
+
+\begin{referece}
+Beth Asch, Do Incentives Matter? The Case of Navy Recruiters , 42 IND. LAB. RELAT. REV. 89, 105 (1990)
+\end{referece}
+
+\begin{referece}
+Paul Oyer, Fiscal Year Ends and Nonlinear Incentive Contracts: The Effect on Business Seasonality , 113 Q. J.ECON. 149-185 (1998)
+\end{referece}
+
+\begin{referece}
+Michael D. Frakes & Melissa F. Wasserman, Procrastination in the Workplace: Evidence From The U.S. Patent Office (NBER Working Paper 22987, Dec. 2016).
+\end{referece}
+
+\begin{referece}
+Jeffrey B. Liebman and Neale Mahoney, Do Expiring Budgets Lead to Wasteful Year-End Spending? Evidence from Federal Procurement , 107 AMER. ECON. REV. 3510 (2017)
+\end{referece}
+
+
+
+\end{document}
