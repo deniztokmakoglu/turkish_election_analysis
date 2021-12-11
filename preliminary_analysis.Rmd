@@ -10,6 +10,18 @@ library("tidyverse")
 library("knitr")
 library("stargazer")
 library(readstata13)
+
+library("tidyverse")
+library("knitr")
+library("stargazer")
+library(readstata13)
+library(ggplot2)
+library("stringr")
+library(data.table)
+library("reticulate")
+library(fixest)
+library(sandwich)
+library(lmtest)
 library(ggplot2)
 library("stringr")
 library(data.table)
@@ -40,28 +52,49 @@ library(lmtest)
 ```
 
 ```{r}
-election_all <- read_csv("clean_data/elections_all.csv")
+election_all <- read_csv("clean_data/all_data_v_event2.csv")
 ```
+
 
 
 # Initial Regression
 ```{r}
+
+election_all <- election_all %>% mutate(event_right_after = ifelse(year_int - event_year <= 4, 1, 0))
+
 election_all <- election_all %>% 
-  mutate(crisis = ifelse(is.na(`crisis type`), 0, 1),
-         percent_turnout = ifelse(percent_turnout < 1, 100 * percent_turnout, 
-                                  percent_turnout))
+  mutate(percent_turnout = ifelse(percent_turnout < 1, 100 * percent_turnout, percent_turnout))
 
-reg1 <- lm(percent_turnout ~ crisis, data = election_all)
+reg1 <- felm(percent_turnout ~ event_right_after, data = election_all)
 
-stargazer(reg1, type = "text")
+reg2 <- felm(percent_turnout ~ event_right_after + kurdish + refugee | city + year , data = election_all)
+
+stargazer(reg1, reg2, type = "text")
 ```
 
-# By Crisis Type
+# Diff and Diff
 
 ```{r}
-reg1 <- lm(percent_turnout ~ `crisis type_civil unrest` + `crisis type_coup` +
-             `crisis type_economic` + `crisis type_refugee` + `crisis type_regufee` + 
-             `crisis type_soft coup` + `crisis type_terrorism` + `crisis type_war`
-, data = election_all)
+election_all2 <- election_all %>% select(city, year_int, election_type,
+                                      percent_turnout, event_year, event)
+
+election_all2 <- election_all2 %>% 
+  mutate(time_to_treat = ifelse(event_year == 0, 0, round((year_int - event_year) / 4)),
+         treat = ifelse(event_year == 0, 0, 1))
+
+election_all2 <- election_all2 %>% filter(time_to_treat <= 10)
+
+mod_twfe = feols(percent_turnout ~ i(time_to_treat, treat, ref = -1) ## Our key interaction: time × treatment status
+		 |city + year_int,                             ## FEs
+		 cluster = ~city ,                          ## Clustered SEs
+		 data = election_all2)
+
+
+
+summary(mod_twfe)
+
+iplot(mod_twfe, 
+      xlab = 'Time to treatment',
+      main = 'Event study: Staggered treatment (TWFE)')
 ```
 
