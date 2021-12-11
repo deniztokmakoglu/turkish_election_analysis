@@ -7,6 +7,19 @@
 \usepackage{booktabs,dcolumn}
 \usepackage{indentfirst}
 \usepackage{hyperref}
+\usepackage{appendixnumberbeamer}
+\usepackage{multicol}
+\usepackage{booktabs}
+\usepackage{outlines} % new package, delete if getting package errors
+\usepackage[scale=2]{ccicons}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+\usepackage{subcaption}
+\captionsetup{compatibility=false}
+\usepackage{xspace}
+\usepackage{tikz}
+\usepackage{newtxtext}
 \usepackage{titlesec}
 \usepackage{lscape}
 \hypersetup{
@@ -85,21 +98,49 @@ Inheriting many problems of it's predecessor, since it's foundation Turkey neede
 The research consists of 4 main catastrophic events, which will be used to analyze voter behaviour. 
 
 \subsubsection{1999 Marmara Earthquake}
+On August 17, 1999 the Marmara Region in Turkey was devastated from a 7.5 magnitude earthquake that lasted for several days. Most of the buildings in the epicenter of the earthquake were either severely damaged or collapsed by the end of the event. Approximately 18,000 people were killed. It was a showcase of Turkey's unpreparedness for earthquakes, a country which sits on various earthquake lines.
 
+\begin{subfigure}[t]{.49\textwidth}
+    \includegraphics[scale=0.15]{paper/figures/earthquake_marmara2.jpeg}
+	\caption{Marmara Earthquake}
+	\end{subfigure}
+	\begin{subfigure}[t]{.49\textwidth}
+    \includegraphics[scale=0.3]{paper/figures/marmara_affected.jpeg}
+	\caption{Regions Affected}
+\end{subfigure}
 
+\subsubsection{1974 Cyprus Peace Operation}
 
-On August 17, 1999 the Marmara Region in Turkey was devastated from 
+The island of Cyprus, which used to be ruled entirely by Republic of Cyprus lies in the Eastern Mediterranean, approximately 70km away from the Turkish mainland. The island is composed of Cypriot Greeks and Cypriot Turks. While the latter is the minority, the founding principles of the Republic of Cyprus ensured equal representation for both, and assigned Turkey, Greece and the UK as guarantor states. All had the ability to intervene if the ethnic groups they represent were in danger. The tension in the island was ever increasing with Turkish minority under attack by Greek Nationalist organizations but the tipping point was in 1974; when a pro Greek unification president got elected in the island. 
 
+Turkey decided to intervene, causing relocation of many Greek and Turkish locals and separation of the island into 2. The north declared it's independence as Turkish Republic of Northern Cyprus; which is only recognized by Turkey. 
 
+\subsubsection{2011 Refugee Crisis}
 
+In 2011, a civil war started in Syria after a set of peaceful student demonstrations caused the government's crackdown. 80\% of the Syrians got displaced and the majority of them entered to Turkey via the border, making Turkey the largest refugee holder in the world since 2014. 
+
+\subsubsection{1984 Conflict with Kurdish Armed Groups}
+
+Composing one fifth of Turkey's population, ethnic Kurdish people mostly live in the Eastern cities in Turkey (mainly Van, Diyarbakir). The PKK (Kurdish Worker's Party), established by Abdullah Ocalan in 1978, has waged an insurgency since 1984 against Turkish authorities for greater cultural and political rights, primarily with the objective of establishing an independent Kurdish state. The ongoing conflict in the eastern region has resulted in nearly forty thousand deaths. The organization has been labelled as a terrorist organization by Turkey and it's allies. 
 
 
 \section{Data and Limitations}
 
-The data is retrieved retrieved from Turkish Statistical Institute, which is the main source for census and election data in Turkey. It consists municipal and parliamentary election results. Having decided to have a public vote for the president in 2010, Turkey had it's first presidential elections in 2014. Since there only has been one more presidential election after, this type of elections are not included in the analysis. 
+The data is retrieved retrieved from Turkish Statistical Institute, which is the main source for census and election data in Turkey. It consists municipal and parliamentary election results. It consists of the election year, city, election type, percentage turnout, winning party and the vote share, previous winning party and vote share. 
+
+The process of data cleaning and creation can be found in 
+
+--
+
+\section{Research Design}
 
 
 
+\section{Results}
+
+
+
+\section{Conclusion}
 
 
 \end{document}
