@@ -6,6 +6,7 @@
 \usepackage{float}
 \usepackage{booktabs,dcolumn}
 \usepackage{indentfirst}
+\usepackage{caption}
 \usepackage{hyperref}
 \usepackage{appendixnumberbeamer}
 \usepackage{multicol}
@@ -134,13 +135,126 @@ The process of data cleaning and creation can be found in
 
 \section{Research Design}
 
+The main research goal of this paper is to uncover effects of regional crises on voter behavior. To define voter behaviour, percentage turnout and the vote share of the winning party is used. 
+
+The research follows Difference in Difference design where each city got affected by an event is compared wit itself (pre-event and post-event) and other cities in the country that has not been effected by an event. The regression format is as follows;
+
+$$ Y_i = \beta_{1} + {event * post\_event} + \beta_{2} * {event} + \beta_{3} * {post\_event} + \theta_i$$
+
+Where $Y_i$ is the outcome of interest and $\theta_i$ is year, city and election type fixed effects.
+
+To make the catastrophic event more relevant with election results, only the preceding 2 and suceeding 2 elections were considered in the analysis.
+
+The research is conducted in three levels:
+
+\subsection{Voter Turnout}
+
+On this level, the outcome of interest is Voter Turnout and the regression is conducted for the entire sample. This is to understand whether catastrophic events change voter confidence in democracy or make elections a matter of 'life and death'.
+
+\subsection{Outcome}
+
+For this level, 2 outcome of interests are present. First, whether to see if the city punishes the ruling party after a catastrophic event. This can be tracked by comparing the winner of the election with the previous winner to see if there is a swing.
+
+The second outcome of interest is the level of incumbent vote for cities that did not change the ruling party after an event. This is to understand how much the voter values the government's response to a catastrophic event which is explained by the difference in the vote share of the continuing ruling party.
+
+\subsection{Heterogeneous Event Effects}
+
+The third level of the analysis is to uncover the specific effects of each (type) of event on vote outcome and voter turnout. This is potentially to understand what type of events speak to the Turkish voters and uncover regional differences in response to the same type of events.
+
+\section{Results and Discussion}
+
+\subsection{Voter Turnout}
+
+As results indicate on Table A1, an event does not change voter tendency to vote. This can indicate that Turkish belief in democratic institutions does not change with a catastrophic event. This is to be expected as traditionally, Turkish turnout in voting is always one of the highest in the world.
+
+\subsection{Vote Outcome}
+
+From table A2, it appears that the vote share of the same ruling party increases by 6\% after a catastrophic event. This means cities that experienced a catastrophic event puts event more faith into the ruling party. This can also potentially be explained by the 'rallying' effect of wars. Yet, this result is also expected as Turkish voters historically lost faith in the ruling party only after economic crises, which is not included in the scope of this research. 
+
+Arguably, Table A3 suggests that cities do not swing after a catastrophic event, which means the voter is not punishing the incumbent party for the event. 
 
 
-\section{Results}
-
-
+\subsection{Heterogeneous Event Effects}
 
 \section{Conclusion}
 
+
+\section{Appendix}
+\captionsetup[table]{name=Table A}
+\begin{table}[!htbp] \centering 
+  \caption{Effects of a Catastrophic Event on Voter Turnout} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-2} 
+\\[-1.8ex] &  \\ 
+ & Voter Turnout \\ 
+\hline \\[-1.8ex] 
+ Treatment Effect & 0.640 \\ 
+  & (0.650) \\ 
+  & \\ 
+\hline \\[-1.8ex] 
+Observations & 200 \\ 
+R$^{2}$ & 0.894 \\ 
+Adjusted R$^{2}$ & 0.855 \\ 
+Residual Std. Error & 2.697 (df = 146) \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table} 
+
+\begin{table}[!htbp] \centering 
+  \caption{Effects of a Catastrophic Event on Incumbent Vote Share} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-2} 
+\\[-1.8ex] &  \\ 
+ & Incumbent Vote Share \\ 
+\hline \\[-1.8ex] 
+ Treatment Effect & 6.310$^{***}$ \\ 
+  & (2.133) \\ 
+  & \\ 
+\hline \\[-1.8ex] 
+Observations & 117 \\ 
+R$^{2}$ & 0.863 \\ 
+Adjusted R$^{2}$ & 0.759 \\ 
+Residual Std. Error & 5.848 (df = 66) \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+ & \multicolumn{1}{r}{Only elections with non-swing result are considered.} \\ 
+\end{tabular} 
+\end{table} 
+
+\begin{table}[!htbp] \centering 
+  \caption{Effects of a Catastrophic Event on Change in Leadership} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-2} 
+\\[-1.8ex] &  \\ 
+ & Dummy for Leadership Change \\ 
+\hline \\[-1.8ex] 
+ Treatment Effect & $-$0.040 \\ 
+  & (0.080) \\ 
+  & \\ 
+\hline \\[-1.8ex] 
+Observations & 200 \\ 
+R$^{2}$ & 0.668 \\ 
+Adjusted R$^{2}$ & 0.548 \\ 
+Residual Std. Error & 0.332 (df = 146) \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table} 
 
 \end{document}
