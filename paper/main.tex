@@ -4,8 +4,11 @@
 \usepackage{enumerate}
 \usepackage{natbib}
 \usepackage{float}
+\usepackage{blindtext}
+\usepackage{hyperref}
 \usepackage{booktabs,dcolumn}
 \usepackage{indentfirst}
+\usepackage{caption}
 \usepackage{hyperref}
 \usepackage{appendixnumberbeamer}
 \usepackage{multicol}
@@ -43,7 +46,7 @@
 \addtolength{\textheight}{1.3in}%
 \addtolength{\topmargin}{-.8in}%
 
-
+\doublespacing
 \begin{document}
 
 %\bibliographystyle{natbib}
@@ -124,23 +127,246 @@ In 2011, a civil war started in Syria after a set of peaceful student demonstrat
 Composing one fifth of Turkey's population, ethnic Kurdish people mostly live in the Eastern cities in Turkey (mainly Van, Diyarbakir). The PKK (Kurdish Worker's Party), established by Abdullah Ocalan in 1978, has waged an insurgency since 1984 against Turkish authorities for greater cultural and political rights, primarily with the objective of establishing an independent Kurdish state. The ongoing conflict in the eastern region has resulted in nearly forty thousand deaths. The organization has been labelled as a terrorist organization by Turkey and it's allies. 
 
 
-\section{Data and Limitations}
+\section{Data and Summary Statistics}
 
-The data is retrieved retrieved from Turkish Statistical Institute, which is the main source for census and election data in Turkey. It consists municipal and parliamentary election results. It consists of the election year, city, election type, percentage turnout, winning party and the vote share, previous winning party and vote share. 
+The data is retrieved retrieved from Turkish Statistical Institute, which is the main source for census and election data in Turkey. It consists 139 municipal and 264 parliamentary election results on a city and year level. The main columns of interest are the election year, city, election type, percentage turnout, winning party and the vote share, previous winning party and vote share. 
 
-The process of data cleaning and creation can be found in 
 
---
+
+The process of data cleaning and creation can be found in the author's \href{https://github.com/deniztokmakoglu/turkish_election_analysis}{github page.}
+
+
 
 \section{Research Design}
 
+The main research goal of this paper is to uncover effects of regional crises on voter behavior. To define voter behaviour, percentage turnout and the vote share of the winning party is used. 
+
+The research follows Difference in Difference design where each city got affected by an event is compared wit itself (pre-event and post-event) and other cities in the country that has not been effected by an event. The regression format is as follows;
+
+$$ Y_i = \beta_{1} + {event * post\_event} + \beta_{2} * {event} + \beta_{3} * {post\_event} + \theta_i$$
+
+Where $Y_i$ is the outcome of interest and $\theta_i$ is year, city and election type fixed effects.
+
+To make the catastrophic event more relevant with election results, only the preceding 2 and suceeding 2 elections were considered in the analysis.
+
+The research is conducted in three levels:
+
+\subsection{Voter Turnout}
+
+On this level, the outcome of interest is Voter Turnout and the regression is conducted for the entire sample. This is to understand whether catastrophic events change voter confidence in democracy or make elections a matter of 'life and death'.
+
+\subsection{Outcome}
+
+For this level, 2 outcome of interests are present. First, whether to see if the city punishes the ruling party after a catastrophic event. This can be tracked by comparing the winner of the election with the previous winner to see if there is a swing.
+
+The second outcome of interest is the level of incumbent vote for cities that did not change the ruling party after an event. This is to understand how much the voter values the government's response to a catastrophic event which is explained by the difference in the vote share of the continuing ruling party.
+
+\subsection{Heterogeneous Event Effects}
+
+The third level of the analysis is to uncover the specific effects of each (type) of event on vote outcome and voter turnout. This is potentially to understand what type of events speak to the Turkish voters and uncover regional differences in response to the same type of events.
+
+\section{Results and Discussion}
+
+\subsection{Voter Turnout}
+
+As results indicate on Table A1, an event does not change voter tendency to vote. This can indicate that Turkish belief in democratic institutions does not change with a catastrophic event. This is to be expected as traditionally, Turkish turnout in voting is always one of the highest in the world.
+
+\subsection{Vote Outcome}
+
+From table A2, it appears that the vote share of the same ruling party increases by 6\% after a catastrophic event. This means cities that experienced a catastrophic event puts event more faith into the ruling party. This can also potentially be explained by the 'rallying' effect of wars. Yet, this result is also expected as Turkish voters historically lost faith in the ruling party only after economic crises, which is not included in the scope of this research. 
+
+Arguably, Table A3 suggests that cities do not swing after a catastrophic event, which means the voter is not punishing the incumbent party for the event. 
 
 
-\section{Results}
+\subsection{Heterogeneous Event Effects}
+
+The 'rallying' effect' is clearly visible under table A4 as the vote share of the incumbent is increased by 17 and 15 percent respectively after Kurdish Armed Conflict and Cyprus Peace Operation events. 
+One thing to note though, the regions effected by Kurdish Armed Conflict are traditionally ruled by parties that also have Kurdish identities. Therefore, the change in vote share might be explained as political efforts to legitimize Kurdish presence. This however, does not imply that the military operations and parties with Kurdish tendencies have anything to do with one another.  
+
+Conversely, according to table A5, voter turnout in cities affected by the Kurdish Armed Conflict was 4 percent less than other cities. One possible explanation is that after armed conflict; some supporters of increased autonomy for Kurdish people might have lost faith in the democratic means of representation. Another possible explanation is the same people might have lost confidence in the cause as they would have thought armed conflict is not the way to gain further rights.
+
+Finally, Syrian Refugee crisis increased the voter turnout by 3 percent in the affected cities. 
+\newpage
+\section{Appendix}
+\captionsetup[table]{name=Table A}
+\begin{table}[!htbp] \centering 
+  \caption{Effects of a Catastrophic Event on Voter Turnout} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-2} 
+\\[-1.8ex] &  \\ 
+ & Voter Turnout \\ 
+\hline \\[-1.8ex] 
+ Treatment Effect & 0.640 \\ 
+  & (0.650) \\ 
+  & \\ 
+\hline \\[-1.8ex] 
+Observations & 200 \\ 
+R$^{2}$ & 0.894 \\ 
+Adjusted R$^{2}$ & 0.855 \\ 
+Residual Std. Error & 2.697 (df = 146) \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table} 
 
 
+\begin{table}[!htbp] \centering 
+  \caption{Effects of a Catastrophic Event on Incumbent Vote Share} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-2} 
+\\[-1.8ex] &  \\ 
+ & Incumbent Vote Share \\ 
+\hline \\[-1.8ex] 
+ Treatment Effect & 6.310$^{***}$ \\ 
+  & (2.133) \\ 
+  & \\ 
+\hline \\[-1.8ex] 
+Observations & 117 \\ 
+R$^{2}$ & 0.863 \\ 
+Adjusted R$^{2}$ & 0.759 \\ 
+Residual Std. Error & 5.848 (df = 66) \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+ & \multicolumn{1}{r}{Only elections with non-swing result are considered.} \\ 
+\end{tabular} 
+\end{table} 
 
-\section{Conclusion}
+\begin{table}[!htbp] \centering 
+  \caption{Effects of a Catastrophic Event on Change in Leadership} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-2} 
+\\[-1.8ex] &  \\ 
+ & Dummy for Leadership Change \\ 
+\hline \\[-1.8ex] 
+ Treatment Effect & $-$0.040 \\ 
+  & (0.080) \\ 
+  & \\ 
+\hline \\[-1.8ex] 
+Observations & 200 \\ 
+R$^{2}$ & 0.668 \\ 
+Adjusted R$^{2}$ & 0.548 \\ 
+Residual Std. Error & 0.332 (df = 146) \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table} 
+\begin{table}[!htbp] \centering 
+  \caption{Effects of a Catastrophic Event on Incumbent Vote Share} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lcccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{4}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-5} 
+\\[-1.8ex] & \multicolumn{4}{c}{Incumbent Vote Share} \\ 
+\\[-1.8ex] & (1) & (2) & (3) & (4)\\ 
+\hline \\[-1.8ex] 
+ Kurdish Armed Conflict & 28.609$^{***}$ &  &  &  \\ 
+  & (7.097) &  &  &  \\ 
+  & & & & \\ 
+ Marmara Earthquake &  & 5.044 &  &  \\ 
+  &  & (4.238) &  &  \\ 
+  & & & & \\ 
+ Cyprus Peace Operation &  &  & 20.260$^{***}$ &  \\ 
+  &  &  & (5.659) &  \\ 
+  & & & & \\ 
+ Syrian Refugees &  &  &  & $-$1.129 \\ 
+  &  &  &  & (5.580) \\ 
+  & & & & \\ 
+\hline \\[-1.8ex] 
+Observations & 117 & 117 & 117 & 117 \\ 
+R$^{2}$ & 0.875 & 0.848 & 0.870 & 0.845 \\ 
+Adjusted R$^{2}$ & 0.781 & 0.733 & 0.771 & 0.727 \\ 
+Residual Std. Error (df = 66) & 5.575 & 6.158 & 5.695 & 6.221 \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+ & \multicolumn{4}{r}{Only elections with non-swing result are considered.} \\ 
+\end{tabular} 
+\end{table} 
 
+\begin{table}[!htbp] \centering 
+  \caption{Effects of a Catastrophic Event on Voter Turnout} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lcccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{4}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-5} 
+\\[-1.8ex] & \multicolumn{4}{c}{Voter Turnout} \\ 
+\\[-1.8ex] & (1) & (2) & (3) & (4)\\ 
+\hline \\[-1.8ex] 
+ Kurdish Armed Conflict & $-$4.329$^{**}$ &  &  &  \\ 
+  & (1.905) &  &  &  \\ 
+  & & & & \\ 
+ Marmara Earthquake &  & 1.247 &  &  \\ 
+  &  & (1.144) &  &  \\ 
+  & & & & \\ 
+ Cyprus Peace Operation &  &  & 1.450 &  \\ 
+  &  &  & (1.723) &  \\ 
+  & & & & \\ 
+ Syrian Refugees &  &  &  & 2.266 \\ 
+  &  &  &  & (1.772) \\ 
+  & & & & \\ 
+\hline \\[-1.8ex] 
+Observations & 200 & 200 & 200 & 200 \\ 
+R$^{2}$ & 0.893 & 0.890 & 0.890 & 0.890 \\ 
+Adjusted R$^{2}$ & 0.855 & 0.851 & 0.850 & 0.851 \\ 
+Residual Std. Error (df = 147) & 2.698 & 2.734 & 2.739 & 2.730 \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table} 
+
+\begin{table}[!htbp] \centering 
+  \caption{Effects of a Catastrophic Event on Voter Turnout} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lcccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{4}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-5} 
+\\[-1.8ex] & \multicolumn{4}{c}{Voter Turnout} \\ 
+\\[-1.8ex] & (1) & (2) & (3) & (4)\\ 
+\hline \\[-1.8ex] 
+ Kurdish Armed Conflict & $-$4.180$^{**}$ &  &  &  \\ 
+  & (1.881) &  &  &  \\ 
+  & & & & \\ 
+ Marmara Earthquake &  & 1.398 &  &  \\ 
+  &  & (1.128) &  &  \\ 
+  & & & & \\ 
+ Cyprus Peace Operation &  &  & 1.588 &  \\ 
+  &  &  & (1.699) &  \\ 
+  & & & & \\ 
+ Syrian Refugees &  &  &  & 3.282$^{*}$ \\ 
+  &  &  &  & (1.778) \\ 
+  & & & & \\ 
+\hline \\[-1.8ex] 
+Observations & 200 & 200 & 200 & 200 \\ 
+R$^{2}$ & 0.896 & 0.894 & 0.893 & 0.895 \\ 
+Adjusted R$^{2}$ & 0.859 & 0.855 & 0.855 & 0.857 \\ 
+Residual Std. Error (df = 146) & 2.662 & 2.692 & 2.698 & 2.675 \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table} 
 
 \end{document}
+
