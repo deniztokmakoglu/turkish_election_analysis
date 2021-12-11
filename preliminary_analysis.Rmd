@@ -107,7 +107,11 @@ election_all3 <- election_all3 %>% mutate(post = ifelse(time_to_treat > 0, 1, 0)
 election_all3$treat_post = election_all3$treat * election_all3$post
 
 reg3 <- felm(percent_turnout ~ treat_post | city + year_int, data = election_all3)
-stargazer(reg3, type = 'text')
+stargazer(reg3, type = 'text',
+          title = c("Effects of a Catastrophic Event on Voter Turnout"),
+          column.labels = c('Voter Turnout'),
+          covariate.labels = c('Treatment Effect'),
+          dep.var.labels = c(''))
 ```
 # Swing
 
@@ -144,11 +148,9 @@ election_all5$change_vote = election_all5$incumbent_vote_share -
 
 election_all5$id = paste(election_all5$city, election_all5$year_int, election_all5$election_type) 
 
-reg5 <- felm(incumbent_vote_share ~ treat_post | city + year_int , 
+reg5 <- felm(incumbent_vote_share ~ treat_post | city + year_int + election_type , 
              data = election_all5)
 
-reg6 <- felm(change_vote ~ treat_post | city + year_int, 
-             data = election_all5)
 
 
 stargazer(reg5, reg6, type = 'text')
@@ -233,5 +235,18 @@ reg4_4 <- felm(incumbent_vote_share ~ treat_post_refugee | city + year_int,
 
 
 stargazer(reg4_1, reg4_2, reg4_3, reg4_4, type = 'text')
+
+
+reg5_1 <- felm(percent_turnout ~ treat_post_kurdish | city + year_int, 
+             data = dummies)
+reg5_2 <- felm(percent_turnout ~ event_earthquake | city + year_int, 
+             data = dummies)
+reg5_3 <- felm(percent_turnout ~ treat_post_cyprus | city + year_int, 
+             data = dummies)
+reg5_4 <- felm(percent_turnout ~ treat_post_refugee | city + year_int, 
+             data = dummies)
+
+
+stargazer(reg5_1, reg5_2, reg5_3, reg5_4, type = 'text')
 ```
 
