@@ -10,7 +10,7 @@ library("tidyverse")
 library("knitr")
 library("stargazer")
 library(readstata13)
-
+library(fastDummies)
 library("tidyverse")
 library("knitr")
 library("stargazer")
@@ -72,7 +72,7 @@ reg2 <- felm(percent_turnout ~ event_right_after + kurdish + refugee | city + ye
 stargazer(reg1, reg2, type = "text")
 ```
 
-# Diff and Diff
+# Event Study
 
 ```{r}
 election_all2 <- election_all %>% select(city, year_int, election_type,
@@ -91,10 +91,147 @@ mod_twfe = feols(percent_turnout ~ i(time_to_treat, treat, ref = -1) ## Our key 
 
 
 
-summary(mod_twfe)
+
 
 iplot(mod_twfe, 
       xlab = 'Time to treatment',
       main = 'Event study: Staggered treatment (TWFE)')
+```
+# Diff and Diff
+
+```{r}
+election_all3 <- election_all2 %>% filter(abs(time_to_treat) <= 3)
+
+election_all3 <- election_all3 %>% mutate(post = ifelse(time_to_treat > 0, 1, 0))
+
+election_all3$treat_post = election_all3$treat * election_all3$post
+
+reg3 <- felm(percent_turnout ~ treat_post | city + year_int, data = election_all3)
+stargazer(reg3, type = 'text')
+```
+# Swing
+
+```{r}
+election_all4 <- election_all %>%select(city, year_int, election_type,
+                                      percent_turnout, event_year, event, swing,
+                                      incumbent_vote_share, prev_winner_voteshare)
+
+election_all4 <- election_all4 %>% 
+  mutate(time_to_treat = ifelse(event_year == 0, 0, 
+                                round((year_int - event_year) / 4)),
+         treat = ifelse(event_year == 0, 0, 1))
+
+election_all4 <- election_all4 %>% mutate(post = 
+                                            ifelse(time_to_treat > 0, 1, 0))
+
+election_all4 <- election_all4 %>% filter(abs(time_to_treat) <= 3)
+
+election_all4$treat_post = election_all4$treat * election_all4$post
+
+reg4 <- felm(swing ~ treat_post | city + year_int, 
+             data = election_all4)
+stargazer(reg4, type = 'text')
+```
+
+# Non Swing Vote Share
+```{r}
+
+election_all5 <- election_all4 %>% filter(swing == 0)
+
+
+election_all5$change_vote = election_all5$incumbent_vote_share - 
+  election_all5$prev_winner_voteshare
+
+election_all5$id = paste(election_all5$city, election_all5$year_int, election_all5$election_type) 
+
+reg5 <- felm(incumbent_vote_share ~ treat_post | city + year_int , 
+             data = election_all5)
+
+reg6 <- felm(change_vote ~ treat_post | city + year_int, 
+             data = election_all5)
+
+
+stargazer(reg5, reg6, type = 'text')
+```
+
+
+#Swing Vote Share
+
+```{r}
+election_all6 <- election_all4 %>% filter(swing == 1)
+
+election_all6$change_vote = election_all6$incumbent_vote_share - 
+  election_all6$prev_winner_voteshare
+
+
+reg7 <- felm(change_vote ~ treat_post | city + year_int, 
+             data = election_all6)
+stargazer(reg7, type = 'text')
+```
+
+
+# Event Spesific 
+
+```{r}
+dummies <- dummy_cols(election_all4, select_columns = 'event', ignore_na = TRUE)
+
+dummies <- dummies %>% mutate(event_earthquake = replace_na(event_earthquake, 0),
+                              `event_kurdish war` = replace_na(`event_kurdish war`, 0),
+                              `event_cyprus war` = replace_na(`event_cyprus war`, 0),
+                              event_refugee = replace_na(`event_refugee`, 0))
+
+dummies$treat_post_kurdish = dummies$`event_kurdish war` * dummies$post
+dummies$event_earthquake = dummies$event_earthquake * dummies$post
+dummies$treat_post_cyprus = dummies$`event_cyprus war` * dummies$post
+dummies$treat_post_refugee = dummies$event_refugee * dummies$post
+
+dummies$change_vote = dummies$incumbent_vote_share - dummies$prev_winner_voteshare
+
+reg1_1 <- felm(incumbent_vote_share ~ treat_post_kurdish | city + year_int, 
+             data = dummies)
+reg1_2 <- felm(incumbent_vote_share ~ event_earthquake | city + year_int, 
+             data = dummies)
+reg1_3 <- felm(incumbent_vote_share ~ treat_post_cyprus | city + year_int, 
+             data = dummies)
+reg1_4 <- felm(incumbent_vote_share ~ treat_post_refugee | city + year_int, 
+             data = dummies)
+
+stargazer(reg1_1, reg1_2, reg1_3, reg1_4, type = 'text')
+
+reg2_1 <- felm(change_vote ~ treat_post_kurdish | city + year_int, 
+             data = dummies)
+reg2_2 <- felm(change_vote ~ event_earthquake | city + year_int, 
+             data = dummies)
+reg2_3 <- felm(change_vote ~ treat_post_cyprus | city + year_int, 
+             data = dummies)
+reg2_4 <- felm(change_vote ~ treat_post_refugee | city + year_int, 
+             data = dummies)
+
+stargazer(reg2_1, reg2_2, reg2_3, reg2_4, type = 'text')
+
+reg3_1 <- felm(swing ~ treat_post_kurdish | city + year_int, 
+             data = dummies)
+reg3_2 <- felm(swing ~ event_earthquake | city + year_int, 
+             data = dummies)
+reg3_3 <- felm(swing ~ treat_post_cyprus | city + year_int, 
+             data = dummies)
+reg3_4 <- felm(swing ~ treat_post_refugee | city + year_int, 
+             data = dummies)
+
+stargazer(reg3_1, reg3_2, reg3_3, reg3_4, type = 'text')
+
+dummies_swing <- dummies %>% filter(swing == 1)
+
+reg4_1 <- felm(incumbent_vote_share ~ treat_post_kurdish | city + year_int, 
+             data = dummies_swing)
+reg4_2 <- felm(incumbent_vote_share ~ event_earthquake | city + year_int, 
+             data = dummies_swing)
+reg4_3 <- felm(incumbent_vote_share ~ treat_post_cyprus | city + year_int, 
+             data = dummies_swing)
+reg4_4 <- felm(incumbent_vote_share ~ treat_post_refugee | city + year_int, 
+             data = dummies_swing)
+
+
+stargazer(reg4_1, reg4_2, reg4_3, reg4_4, type = 'text')
 ```
 
