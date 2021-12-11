@@ -62,6 +62,11 @@
   \title{\bf Turkish Elections and Catastrophic Events}
     {
 }
+\author{\name Deniz Tokmakoglu\\
+       \addr Harris Public Policy and Department of Computer Science\\
+       \address{\href{https://github.com/deniztokmakoglu/turkish_election_analysis}{GitHub}}}
+\maketitle
+
 
   \maketitle
 } \fi
@@ -131,11 +136,21 @@ Composing one fifth of Turkey's population, ethnic Kurdish people mostly live in
 
 The data is retrieved retrieved from Turkish Statistical Institute, which is the main source for census and election data in Turkey. It consists 139 municipal and 264 parliamentary election results on a city and year level. The main columns of interest are the election year, city, election type, percentage turnout, winning party and the vote share, previous winning party and vote share. 
 
-Turkish election turnout is higher than most of the other democracies in the world. For all the election types and regions, the average turnout is $84\%$ The top 10 cities 
+Turkish election turnout is higher than most of the other democracies in the world. For all the election types and regions, the average turnout is $84\%$ Cities with the highest turnout appear to be on the east and south regions of Turkey, Istanbul being the exception. 
 
+\begin{figure}[h]
+ \centering
+\includegraphics[width=15cm]{paper/turnout_selected.png}
+ \caption{Average Turnout for Selected Cities}
+\end{figure}
+\newpage
+Cities in the South and East also appear to be shifting incumbent parties more than other cities, again Istanbul being an exception. While Eastern cities (Diyarbakır, Mardin and Van) always choose incumbent parties with same characteristics, cities like Adana always shift between Right and Left wing parties.
 
-
-The process of data cleaning and creation can be found in the author's \href{https://github.com/deniztokmakoglu/turkish_election_analysis}{github page.}
+\begin{figure}[h]
+ \centering
+\includegraphics[width=15cm]{paper/change_party.png}
+ \caption{Average Turnout for Selected Cities}
+\end{figure}
 
 
 
