@@ -1,4 +1,4 @@
----
+
 title: "**Turkish Elections and Catastrophic Events**"
 author:
 - |
@@ -6,7 +6,7 @@ author:
   University of Chicago\
   Harris Public Policy and Department of Computer Science\
 
----
+
 
 # Introduction {#sec:intro}
 
