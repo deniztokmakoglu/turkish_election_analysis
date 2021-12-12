@@ -1,21 +1,12 @@
 ---
-address: "[GitHub
-  Page](https://github.com/deniztokmakoglu/turkish_election_analysis)"
+title: "**Turkish Elections and Catastrophic Events**"
 author:
 - |
   Deniz Tokmakoğlu\
   University of Chicago\
   Harris Public Policy and Department of Computer Science\
-title: "**Turkish Elections and Catastrophic Events**"
+
 ---
-
-0
-
-0
-
-::: {.center}
-**Title**
-:::
 
 # Introduction {#sec:intro}
 
@@ -148,7 +139,7 @@ clearly observable in Turkish Election results. Given is the party
 tendencies of Municipal Election winners over the years.
 
 ![Average Turnout for Selected
-Cities](paper/ideologies.png){width="15cm"}
+Cities](paper/ideologies.png)
 
 It is also obvious that this emergence occurred in the expense of left
 wing parties. However 2019 elections suggest that the trend started to
@@ -306,7 +297,7 @@ https://data.tuik.gov.tr/Kategori/GetKategori?p=adalet-ve-secim-110&amp;dil=2.
   Adjusted R$^{2}$                                                      0.855
   Residual Std. Error                                             2.697 (df = 146)
                         
-  *Note:*                $^{*}$p$<$`<!-- -->`{=html}0.1; $^{**}$p$<$`<!-- -->`{=html}0.05; $^{***}$p$<$`<!-- -->`{=html}0.01
+ 
   --------------------- -----------------------------------------------------------------------------------------------------
 
   : Effects of a Catastrophic Event on Voter Turnout
@@ -327,7 +318,7 @@ https://data.tuik.gov.tr/Kategori/GetKategori?p=adalet-ve-secim-110&amp;dil=2.
   Adjusted R$^{2}$                                                      0.759
   Residual Std. Error                                              5.848 (df = 66)
                         
-  *Note:*                $^{*}$p$<$`<!-- -->`{=html}0.1; $^{**}$p$<$`<!-- -->`{=html}0.05; $^{***}$p$<$`<!-- -->`{=html}0.01
+  
                                                 Only elections with non-swing result are considered.
   --------------------- -----------------------------------------------------------------------------------------------------
 
@@ -349,7 +340,7 @@ https://data.tuik.gov.tr/Kategori/GetKategori?p=adalet-ve-secim-110&amp;dil=2.
   Adjusted R$^{2}$                                                      0.548
   Residual Std. Error                                             0.332 (df = 146)
                         
-  *Note:*                $^{*}$p$<$`<!-- -->`{=html}0.1; $^{**}$p$<$`<!-- -->`{=html}0.05; $^{***}$p$<$`<!-- -->`{=html}0.01
+  *Note:*               
   --------------------- -----------------------------------------------------------------------------------------------------
 
   : Effects of a Catastrophic Event on Change in Leadership
@@ -360,7 +351,7 @@ https://data.tuik.gov.tr/Kategori/GetKategori?p=adalet-ve-secim-110&amp;dil=2.
                                                                                                                                                                    
                                                                           Incumbent Vote Share                                                                     
                                                                                                                                                                    
-                                                                                  \(1\)                                                   \(2\)        \(3\)                  \(4\)
+                                                     \(1\)                                                   \(2\)        \(3\)                  \(4\)
                                                                                                                                                                    
   Kurdish Armed Conflict                                                     28.609$^{***}$                                                                        
                                                                                  (7.097)                                                                           
@@ -380,7 +371,7 @@ https://data.tuik.gov.tr/Kategori/GetKategori?p=adalet-ve-secim-110&amp;dil=2.
   Adjusted R$^{2}$                                                                0.781                                                   0.733        0.771                  0.727
   Residual Std. Error (df = 66)                                                   5.575                                                   6.158        5.695                  6.221
                                                                                                                                                                    
-  *Note:*                          $^{*}$p$<$`<!-- -->`{=html}0.1; $^{**}$p$<$`<!-- -->`{=html}0.05; $^{***}$p$<$`<!-- -->`{=html}0.01                             
+  
                                                           Only elections with non-swing result are considered.                                                     
   ------------------------------- ----------------------------------------------------------------------------------------------------- --------- ---------------- ---------------------------
 
