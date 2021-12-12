@@ -1,8 +1,10 @@
 ---
-address: "[GitHub](https://github.com/deniztokmakoglu/turkish_election_analysis)"
+address: "[GitHub
+  Page](https://github.com/deniztokmakoglu/turkish_election_analysis)"
 author:
 - |
-  Deniz Tokmakoglu\
+  Deniz Tokmakoğlu\
+  University of Chicago\
   Harris Public Policy and Department of Computer Science\
 title: "**Turkish Elections and Catastrophic Events**"
 ---
@@ -77,10 +79,6 @@ damaged or collapsed by the end of the event. Approximately 18,000
 people were killed. It was a showcase of Turkey's unpreparedness for
 earthquakes, a country which sits on various earthquake lines.
 
-![Marmara Earthquake](paper/figures/earthquake_marmara2.jpeg)
-
-![Regions Affected](paper/figures/marmara_affected.jpeg)
-
 ### 1974 Cyprus Peace Operation
 
 The island of Cyprus, which used to be ruled entirely by Republic of
@@ -144,6 +142,17 @@ between Right and Left wing parties.
 
 ![Average Turnout for Selected
 Cities](paper/change_party.png){width="15cm"}
+
+Finally, the emergence of right wing parties and Political Islam is
+clearly observable in Turkish Election results. Given is the party
+tendencies of Municipal Election winners over the years.
+
+![Average Turnout for Selected
+Cities](paper/ideologies.png){width="15cm"}
+
+It is also obvious that this emergence occurred in the expense of left
+wing parties. However 2019 elections suggest that the trend started to
+reverse.
 
 # Research Design
 
@@ -241,6 +250,43 @@ thought armed conflict is not the way to gain further rights.
 
 Finally, Syrian Refugee crisis increased the voter turnout by 3 percent
 in the affected cities.
+
+# Conclusion
+
+The purpose of this research was to understand the impact of regional
+catastrophic events on Turkish voter behaviour. While it is obvious that
+turnout and incumbent parties do not change right after the event, some
+events (especially armed conflict or war) increases the trust in the
+current ruling party. While this does not establish causality; the
+results of this paper suggest that there definitely is a relation
+between the two.
+
+# References
+
+Council on Foreign Relations. (n.d.). Conflict between Turkey and armed
+Kurdish groups \| global conflict tracker. Council on Foreign Relations.
+Retrieved December 12, 2021, from
+https://www.cfr.org/global-conflict-tracker/conflict/conflict-between-turkey-and-armed-kurdish-groups.
+
+Weissmann, A., &amp; Special to The Washington Post; Arnie Weissmann is
+a freelance writer who recently spent three months on Cyprus. (1984,
+January 22). Cyprus sights: Both sides now. The Washington Post.
+Retrieved December 12, 2021, from\
+https://www.washingtonpost.com/archive/lifestyle/travel/1984/01/22/cyprus-sights-both-sides-now/413143fc-9424-40d5-b894-d1a6c64c332d/.
+
+Platform, I. R. (n.d.). Marmara earthquake, 1999 - countries &amp;
+disasters. International Recovery Platform. Retrieved December 12, 2021,
+from\
+https://www.recoveryplatform.org/countries_and_disasters/disaster/26/marmara_earthquake_1999.
+
+Reid, K. (2021, July 13). Syrian refugee crisis: Facts, faqs, and how to
+help. World Vision. Retrieved December 12, 2021, from\
+https://www.worldvision.org/refugees-news-stories/syrian-refugee-crisis-facts.
+
+Turkish Statistical Institue. (n.d.). Parlimentary and Municipality
+Election Database. Turkish Statistical Institute Database for Election
+and Justice. Retrieved December 12, 2021, from
+https://data.tuik.gov.tr/Kategori/GetKategori?p=adalet-ve-secim-110&amp;dil=2.
 
 # Appendix
 
