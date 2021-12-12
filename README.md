@@ -1,14 +1,12 @@
 
-title: "**Turkish Elections and Catastrophic Events**"
-author:
-- |
-  Deniz Tokmakoğlu\
-  University of Chicago\
-  Harris Public Policy and Department of Computer Science\
+# Turkish Elections and Catastrophic Events
+## Deniz Tokmakoğlu\
+## University of Chicago\
+## Harris Public Policy and Department of Computer Science\
 
 
 
-# Introduction {#sec:intro}
+# Introduction 
 
 A year ago, Turkey celebrated a century of being a democracy. Now, only
 2 years away from the same milestone for being a republic, it is
