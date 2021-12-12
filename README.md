@@ -1,8 +1,8 @@
 
 # Turkish Elections and Catastrophic Events
-## Deniz Tokmakoğlu\
-## University of Chicago\
-## Harris Public Policy and Department of Computer Science\
+## Deniz Tokmakoğlu
+## University of Chicago
+## Harris Public Policy and Department of Computer Science
 
 
 
